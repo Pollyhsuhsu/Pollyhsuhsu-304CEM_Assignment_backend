@@ -21,6 +21,7 @@ var Courses = require("./routes/Courses")
 var Programs = require("./routes/Programs")
 var Classes = require("./routes/Classes")
 var Attendances = require("./routes/Attendances")
+var Email = require("./routes/Email")
 
 app.use("/users", Users)
 app.use("/departments", Departments)
@@ -28,6 +29,7 @@ app.use("/courses", Courses)
 app.use("/programs", Programs)
 app.use("/classes", Classes)
 app.use("/attendances", Attendances)
+app.use("/email", Email)
 
 app.listen(port, function () {
     console.log("Server is running on port: " + port)
