@@ -1,0 +1,5 @@
+module.exports = {
+    "name": "Server Test",
+    "database": "mongodb://localhost:27017/test",
+    "port": 3100
+}
