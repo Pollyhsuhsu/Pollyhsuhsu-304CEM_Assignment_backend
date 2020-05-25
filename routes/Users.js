@@ -40,7 +40,6 @@ users.post("/register", (req, res) => {
         photo: req.body.photo,
         created: today
     }
-
     User.findOne({
         email: req.body.email
     })
@@ -49,20 +48,12 @@ users.post("/register", (req, res) => {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     userData.password = hash
                     User.create(userData)
-                        .then(user => {
-                            res.status(201).json({ status: user.email + ' registered', userID: user._id, message: 'User created!' })
-                        })
-                        .catch(err => {
-                            res.send('error: ' + err)
-                        })
+                        .then(user => { res.status(201).json({ status: user.email + ' registered', userID: user._id, message: 'User created!' }) })
+                        .catch(err => { res.send('error: ' + err) })
                 })
-            } else {
-                res.json({ error: 'User already exists' })
-            }
+            } else {res.json({ error: 'User already exists' }) }
         })
-        .catch(err => {
-            res.send('error: ' + err)
-        })
+        .catch(err => { res.send('error: ' + err) })
 })
 
 users.put("/updatePassword", (req, res) => {
@@ -168,14 +159,11 @@ users.post('/login', (req, res) => {
                 } else {
                     res.json({ error: 'Incorrect account or password' })
                 }
-            } else {
-                res.json({ error: 'Incorrect account or password' })
-            }
+            } else {res.json({ error: 'Incorrect account or password' }) }
         })
-        .catch(err => {
-            res.send('error: ' + err)
-        })
+        .catch(err => { res.send('error: ' + err) })
 })
+
 users.delete("/delUserbyID/:userID", (req, res) => {
     User.findOneAndRemove({
       _id: req.params.userID

@@ -34,7 +34,7 @@ email.post('/sendemail', function(req, res) {
           console.log(error);
         } else {
           console.log('Email sent: ' + info.response);
-          res.status(200).json({response:"Please check your email!", voteID: voteID});
+          res.status(200).json({response:"Please check your email!"});
         }
     });
 });

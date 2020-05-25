@@ -100,4 +100,36 @@ classes.post("/queryClassbyID/:class_id", (req, res) => {
         });
 })
 
+/* Query By Class ID and User ID*/
+classes.get("/queryClassbyIDandUserID/:class_id&:user_id", (req, res) => {
+    Class.findOne({
+        _id: req.params.class_id,
+        class_TimeDetails: { $elemMatch: { teacher_id: req.params.user_id }}
+    })
+        .then(activeClass => {
+            const qClass= {
+                _id: activeClass._id,
+                class_name: activeClass.class_name,
+                class_pgrmCode:activeClass.class_pgrmCode,
+                active: activeClass.active,
+                class_year: activeClass.class_year,
+                class_TimeDetails: activeClass.class_TimeDetails,
+                student: activeClass.student,
+            }
+            res.send(qClass)
+        })
+        .catch(err => {
+            console.log(2);
+            res.json(err);
+        });
+})
+
+/* Delete a Class */
+classes.delete("/delClassbyID/:classID", (req, res) => {
+    Class.findOneAndRemove({
+      _id: req.params.classID
+    })
+      .then(classs => res.send(`${classs.class_id}Successfully deleted`))
+      .catch(err => res.json(err));
+})
 module.exports = classes

@@ -5,7 +5,7 @@ const cors = require("cors")
 const Course = require("../models/Course")
 coureses.use(cors())
 
-/* Add new Depatment */
+/* Add new Course */
 coureses.post("/createCourse", (req, res) => {
     const today = new Date()
     const courseData = {
@@ -101,7 +101,7 @@ coureses.post("/queryCoursebyID/:courseID", (req, res) => {
         });
 })
 
-/* Delete a Department */
+/* Delete a course */
 coureses.delete("/delcoursebyID/:courseID", (req, res) => {
     Course.findOneAndRemove({
       _id: req.params.courseID

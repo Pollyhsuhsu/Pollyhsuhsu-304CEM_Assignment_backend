@@ -54,7 +54,7 @@ programs.get("/all", (req, res) => {
         });
 })
 
-/* Update Departmnent Information*/
+/* Update Program Information*/
 programs.put("/UpdatePrgm/:prgm_id", (req, res) => {
     Program.findOneAndUpdate({
         _id: req.params.prgm_id
