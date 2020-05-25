@@ -24,7 +24,7 @@ coureses.post("/createCourse", (req, res) => {
         if (!course) {
             Course.create(courseData)
                 .then(course => {
-                    res.json({ status: course.course_name+ ' is created' })
+                    res.json({ status: course.course_name + 'course is created',courseID: course._id  })
                 })
                 .catch(err => {
                     res.send('error: ' + err)
